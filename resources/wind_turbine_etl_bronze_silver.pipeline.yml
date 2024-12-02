@@ -1,0 +1,15 @@
+# The main pipeline for wind_turbine_etl
+resources:
+  pipelines:
+    wind_turbine_etl_pipeline:
+      name: wind_turbine_etl_pipeline
+
+      target: wind_turbine_etl_${bundle.environment}
+      libraries:
+        - notebook:
+            path: ../src/load_data_dlt.ipynb
+      catalog: wind_farm
+
+      configuration:
+        bundle.sourcePath: ${workspace.file_path}/src
+      
